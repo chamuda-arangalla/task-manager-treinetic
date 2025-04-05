@@ -12,6 +12,9 @@ import com.example.task_manager.service.UserService;
 import com.example.task_manager.util.JwtUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +54,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public LoginResponse loginUser(LoginRequest loginRequest) throws NotFoundException {
-        return null;
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
+        );
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        String jwt = jwtUtil.generateToken(userDetails);
+
+        User foundUser = userRepository.findByUsername(loginRequest.getUsername());
+
+        if (foundUser == null){
+            throw new NotFoundException("User not found with username: " + loginRequest.getUsername());
+        }
+
+        return LoginResponse.builder()
+                .id(foundUser.getId())
+                .name(foundUser.getName())
+                .email(foundUser.getEmail())
+                .username(foundUser.getUsername())
+                .token(jwt)
+                .build();
     }
 }
