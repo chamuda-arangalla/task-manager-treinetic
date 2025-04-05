@@ -30,8 +30,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse registerUser(UserRequest userRequest) throws AllReadyExistsException {
         User user = new User();
-        user.setName(userRequest.getName());
-        user.setEmail(userRequest.getEmail());
         user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
 
         User existsUser = userRepository.findByUsername(userRequest.getUsername());
@@ -46,8 +44,6 @@ public class UserServiceImpl implements UserService {
 
         return UserResponse.builder()
                 .id(user.getId())
-                .name(user.getName())
-                .email(user.getEmail())
                 .username(user.getUsername())
                 .build();
     }
@@ -70,8 +66,6 @@ public class UserServiceImpl implements UserService {
 
         return LoginResponse.builder()
                 .id(foundUser.getId())
-                .name(foundUser.getName())
-                .email(foundUser.getEmail())
                 .username(foundUser.getUsername())
                 .token(jwt)
                 .build();

@@ -6,9 +6,6 @@ import lombok.Data;
 public class UserRequest {
 
     private String id;
-    private String name;
-    private String email;
-    private String password;
     private String username;
-    private String imgUrl;
+    private String password;
 }
