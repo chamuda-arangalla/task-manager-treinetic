@@ -1,26 +1,38 @@
-<div class="container d-flex justify-content-center align-items-center min-vh-100 bg-light">
-    <div class="card p-4 shadow-sm" style="width: 100%; max-width: 400px;">
-      <h3 class="text-center mb-4">Login</h3>
-  
-      <form>
-        <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
-          <input type="text" formControlName="username" id="username" class="form-control" placeholder="Enter username">
-          <div class="text-danger">
-            Username is required.
-          </div>
+<div class="container d-flex justify-content-center align-items-center min-vh-100 ">
+  <div class="card p-4 shadow rounded-4" style="width: 100%; max-width: 420px; background-color: #ffffff; margin-top: 100px; margin-bottom: 100px;">
+    <div class="text-center mb-4">
+      <img src="https://img.icons8.com/ios-filled/50/228B22/user.png" alt="User Icon" class="mb-2" width="40">
+      <h3 class="fw-bold" style="color: #2e7d32;">Login to Your Account</h3>
+      <p class="text-muted small">Please enter your credentials</p>
+    </div>
+
+    <form >
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" formControlName="username" id="username" class="form-control" placeholder="Enter username">
+        <div class="text-danger">
+          Username is required.
         </div>
-  
-        <div class="mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" formControlName="password" id="password" class="form-control" placeholder="Enter password">
-          <div  class="text-danger">
-            Password is required.
-          </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" formControlName="password" id="password" class="form-control" placeholder="Enter password">
+        <div class="text-danger">
+          Password is required.
         </div>
-  
-        <button class="btn btn-primary w-100" >Login</button>
-      </form>
+      </div>
+
+      <button type="submit" class="btn w-100 text-white" 
+              style="background-color: #2e7d32;">
+        Login
+      </button>
+    </form>
+
+    <div class="text-center mt-4">
+      <small class="text-muted">Don't have an account?
+        <a href="../signup/signup.component.html" class="text-success text-decoration-none">Register here</a>
+      </small>
     </div>
   </div>
-  
+</div>
