@@ -1,0 +1,51 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# Eclipse project settings
+*.log
+*.tree
+*.lock
+*.lock_info
+*.location
+*.install.xml
+
+# Ignore Eclipse .metadata folder completely
+.metadata/
+.metadata.*
+
+# Ignore Eclipse plugin logs and settings
+.metadata/.plugins/org.eclipse.*
+
+#application properties
+backend/task-manager/src/main/resources/application.properties
