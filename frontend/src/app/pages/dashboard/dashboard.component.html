@@ -1,9 +1,9 @@
 <div class="container mt-5">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h2 class="fw-bold text-success">Task Dashboard</h2>
-    <div class="d-flex gap-3">
-      <a routerLink="/taskForm" class="btn btn-success d-flex align-items-center gap-1 px-3">
-        <i class="bi bi-plus-circle-fill"></i> Add Task
+    <div class="d-flex">
+      <a routerLink="/taskForm" class="btn btn-success d-flex align-items-center gap-1 px-3 mr-3">
+        <i class="bi bi-plus-circle-fill mr-2"></i> Add Task
       </a>
       <button (click)="onLogout()" class="btn btn-outline-danger d-flex align-items-center gap-1 px-3">
         <i class="bi bi-box-arrow-right"></i> Logout
@@ -30,18 +30,35 @@
         <tr *ngFor="let task of tasks">
           <td>{{ task.title }}</td>
           <td>
-            <span [ngClass]="{
-              'badge bg-primary': task.status === 'TO_DO',
-              'badge bg-warning text-dark': task.status === 'IN_PROGRESS',
-              'badge bg-success': task.status === 'DONE'
-            }">
+            <span class="badge"
+            [ngStyle]="{
+              'background': task.status === 'TO_DO'
+              ? 'linear-gradient(150deg, #0052cc, #409eff)'
+              : task.status === 'IN_PROGRESS'
+              ? 'linear-gradient(150deg, #FFD54F, #FFC107)'
+              : 'linear-gradient(150deg, #28a745, #58d68d)',
+              'color': task.status === 'IN_PROGRESS' ? '#212529' : '#fff',
+              'border': task.status === 'TO_DO'
+              ? '0px solid #003d99'
+              : task.status === 'IN_PROGRESS'
+              ? '0px solid #ffca28'
+              : '0px solid #1e7e34',
+              'transition': 'transform 0.2s'
+              }"
+              (mouseover)="badgeHover = true" (mouseout)="badgeHover = false"
+              [style.transform]="badgeHover ? 'scale(1.05)' : 'scale(1.15)'">
               {{ task.status.replace('_', ' ') }}
             </span>
+
           </td>
           <td>{{ task.description }}</td>
-          <td>{{ task.createdAt | date: 'medium' }}</td>
+          <td>
+            <div>{{ task.createdAt | date: 'EEEE' }}</div>
+            <div>{{ task.createdAt | date: 'h:mm a' }}</div>
+          </td>
+          
           <td class="text-end">
-            <a routerLink="/taskEdit/{{ task.id }}" class="btn btn-sm btn-outline-primary me-2">
+            <a routerLink="/taskEdit/{{ task.id }}" class="btn btn-sm btn-outline-primary mr-2">
               <i class="bi bi-pencil-square"></i>
             </a>
             <button (click)="deleteTask(task.id)" class="btn btn-sm btn-outline-danger">

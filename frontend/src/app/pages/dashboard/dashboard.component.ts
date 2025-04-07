@@ -12,6 +12,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class DashboardComponent implements OnInit{
   
+  badgeHover = false;
+
   constructor(private taskService: TaskService,private authService: AuthService,
     private router: Router,){}
 
