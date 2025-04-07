@@ -8,10 +8,7 @@ import com.example.task_manager.exception.AllReadyExistsException;
 import com.example.task_manager.exception.NotFoundException;
 import com.example.task_manager.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor

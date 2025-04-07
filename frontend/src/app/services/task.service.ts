@@ -28,21 +28,21 @@ export class TaskService {
   }
 
   //get all tasks
-  async getAllTasks(){
-
-    try {
-
-      const response = await axios.get(`${this.API_URL}/tasks`)
-      return  response.data;
-      
-    } catch (error) {
-      
-      console.log('Error while getting tasks:',error);
-    }
+async getAllTasks() {
+  const token = localStorage.getItem('token');
+  try {
+    const response = await axios.get(`${this.API_URL}/tasks`);
+    return response.data;
+  } catch (error) {
+    console.log('Error while getting tasks:', error);
+    throw error; 
   }
+}
+
 
   //delete a task
   async deleteTask(id:String){
+    const token = localStorage.getItem('token');
     try {
       
       const response = await axios.delete(`${this.API_URL}/tasks/${id}`)
