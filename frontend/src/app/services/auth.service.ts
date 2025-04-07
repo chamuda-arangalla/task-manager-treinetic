@@ -33,6 +33,13 @@ export class AuthService {
     }
   }
 
+  //register a user
+  async register(credentials: { username: string; password: string }): Promise<any> {
+    const response = await axios.post(`${this.API_URL}/register`, credentials);
+    return response.data;
+  }
+  
+
   logout(): void {
     localStorage.removeItem('token');
 
