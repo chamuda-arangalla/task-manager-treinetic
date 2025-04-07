@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-task-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,RouterLink],
   templateUrl: './task-form.component.html',
   styleUrl: './task-form.component.css'
 })
@@ -43,4 +44,22 @@ export class TaskFormComponent implements OnInit {
       alert('Failed to add task');
     }
   }
+
+  //status dropdown
+  selectedStatusLabel: string = 'To Do'; // default display
+taskStatus: string = 'TO_DO';            // default value
+
+selectStatus(value: string) {
+  this.taskStatus = value;
+
+  // Update label
+  if (value === 'TO_DO') this.selectedStatusLabel = 'To Do';
+  if (value === 'IN_PROGRESS') this.selectedStatusLabel = 'In Progress';
+  if (value === 'DONE') this.selectedStatusLabel = 'Done';
+
+  // Update form control
+  this.taskForm.get('status')?.setValue(value);
+}
+
+  
 }
