@@ -52,4 +52,14 @@ export class TaskService {
       console.log('Error while deleting a task:',error);
     }
   }
+
+  //update a task
+  async updateTask(id:String,task:Task){
+    try {
+      const response = await axios.put(`${this.API_URL}/tasks/${id}`,task)
+      return response.data;
+    } catch (error) {
+      console.log('Error while updating a task:',error);
+    }
+  }
 }
