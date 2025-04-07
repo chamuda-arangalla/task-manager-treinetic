@@ -41,5 +41,14 @@ A full-stack task management application built with Angular (frontend) and Node.
 -Username: chamuda
 -Password: 1234
 
+## UIs
+![Screenshot 2025-04-07 204051](https://github.com/user-attachments/assets/8d396e43-bc8f-4262-880b-b1f3b2924ec3)
+
+![Screenshot 2025-04-07 204034](https://github.com/user-attachments/assets/6a64c9f0-bd0f-4e10-9076-80e185224da0)
+
+![Screenshot 2025-04-07 204025](https://github.com/user-attachments/assets/88fef40a-275a-4b20-9ec9-5dcefda0c983)
+
+
+
 
 
