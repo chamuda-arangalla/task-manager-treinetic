@@ -2,7 +2,7 @@
     <div class="card p-4 shadow-sm" style="max-width: 600px; margin: 0 auto;">
       <h3 class="mb-4 text-success fw-bold text-center">Add New Task</h3>
   
-      <form >
+      <form [formGroup]="taskForm" (ngSubmit)="addTask()">
   
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
@@ -15,7 +15,7 @@
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
           <textarea formControlName="description" id="description" class="form-control" rows="3"
-                    placeholder="Enter task description (optional)"></textarea>
+                    placeholder="Enter task description"></textarea>
         </div>
   
         <div class="mb-3">

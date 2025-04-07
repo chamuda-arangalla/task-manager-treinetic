@@ -3,7 +3,7 @@
         <h2 class="fw-bold text-success mb-0">Task Dashboard</h2>
         
         <div class="d-flex align-items-center gap-5">
-            <a routerLink="/tasks/new" class="btn btn-success me-2">Add Task</a>
+            <a routerLink="/taskForm" class="btn btn-success me-2">Add Task</a>
             <a class="btn btn-outline-danger">Logout</a>
         </div>
         
@@ -26,17 +26,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr >
-            <!-- <td>"{{ task.title }}"</td>
+          <tr *ngFor="let task of tasks">
+            <td>"{{ task.title }}"</td>
             <td>"{{ task.status }}"</td>
-            <td>"{{ task.createdAt | date: 'medium' }}"</td> -->
-            <td>task 1</td>
-            <td>TO_DO</td>
-            <td>Impelement UI</td>
-            <td>2025</td>
+            <td>"{{ task.description }}"</td>
+            <td>"{{ task.createdAt | date: 'medium' }}"</td>
+            
             <td>
               <a  class="btn btn-sm btn-outline-primary me-2">Edit</a>
-              <button  class="btn btn-sm btn-outline-danger">Delete</button>
+              <button  class="btn btn-sm btn-outline-danger" (click)="deleteTask(task.id)">Delete</button>
             </td>
           </tr>
         </tbody>
