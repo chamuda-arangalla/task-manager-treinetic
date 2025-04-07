@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 import { Task } from '../models/task.model';
+import { TaskUpdate } from '../models/taskUpdate.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,16 +29,16 @@ export class TaskService {
   }
 
   //get all tasks
-async getAllTasks() {
-  const token = localStorage.getItem('token');
-  try {
-    const response = await axios.get(`${this.API_URL}/tasks`);
-    return response.data;
-  } catch (error) {
-    console.log('Error while getting tasks:', error);
-    throw error; 
+  async getAllTasks() {
+    const token = localStorage.getItem('token');
+    try {
+      const response = await axios.get(`${this.API_URL}/tasks`);
+      return response.data;
+    } catch (error) {
+      console.log('Error while getting tasks:', error);
+      throw error; 
+    }
   }
-}
 
 
   //delete a task
@@ -54,12 +55,22 @@ async getAllTasks() {
   }
 
   //update a task
-  async updateTask(id:String,task:Task){
+  async updateTask(id:String,task:TaskUpdate){
     try {
       const response = await axios.put(`${this.API_URL}/tasks/${id}`,task)
       return response.data;
     } catch (error) {
       console.log('Error while updating a task:',error);
     }
+  }
+
+  //get task by id
+  async getTaskById(id: string) {
+    try{
+      const response = await axios.get(`${this.API_URL}/tasks/${id}`)
+      return response.data;
+    }catch(error){
+      console.error('Error fetching task by ID:', error);
+    }
   }
 }

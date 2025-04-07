@@ -1,39 +1,58 @@
-<div class="container mt-4">
-    <div class="card p-4 shadow-sm" style="max-width: 600px; margin: 0 auto;">
-      <h3 class="mb-4 text-primary fw-bold text-center">Update Task</h3>
+<div class="container mt-5">
+    <div class="row justify-content-center align-items-start">
+      
+      <!-- Back Button -->
+      <div class="col-auto d-flex align-items-start me-4">
+        <button
+          class="btn btn-outline-secondary rounded-pill back-btn"
+          routerLink="/dashboard"
+          style="height: 40px;">
+          <i class="bi bi-arrow-left"></i>
+        </button>
+      </div>
   
-      <form >
+      <!-- Edit Task Form Card -->
+      <div class="col-md-7">
+        <div class="card p-4 shadow-sm">
+          <h3 class="mb-4 text-success fw-bold text-center">Edit Task</h3>
   
-        <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
-          <input formControlName="title" id="title" class="form-control" type="text" placeholder="Enter task title">
-          <div class="text-danger" >
-            Title is required.
-          </div>
+          <form [formGroup]="taskEdit" >
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input formControlName="title" id="title" class="form-control" type="text" placeholder="Enter task title">
+              <div class="text-danger" >
+                Title is required.
+              </div>
+            </div>
+  
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea formControlName="description" id="description" class="form-control" rows="3"
+                placeholder="Enter task description"></textarea>
+            </div>
+  
+            <div class="mb-3">
+              <label class="form-label fw-semibold text-secondary">Task Status</label>
+              <div class="dropdown">
+                <button class="btn btn-light border shadow-sm d-flex justify-content-between align-items-center w-100 dropdown-toggle custom-dropdown" type="button"
+                  id="statusDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ selectedStatusLabel }}
+                </button>
+                <ul class="dropdown-menu w-100 shadow-sm rounded" aria-labelledby="statusDropdown">
+                  <li><a class="dropdown-item" (click)="selectStatus('TO_DO')">To Do</a></li>
+                  <li><a class="dropdown-item" (click)="selectStatus('IN_PROGRESS')">In Progress</a></li>
+                  <li><a class="dropdown-item" (click)="selectStatus('DONE')">Done</a></li>
+                </ul>
+              </div>
+            </div>
+  
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-success px-4" (click)="updateTask()">Update Task</button>
+            </div>
+          </form>
         </div>
+      </div>
   
-        <div class="mb-3">
-          <label for="description" class="form-label">Description</label>
-          <textarea formControlName="description" id="description" class="form-control" rows="3"
-                    placeholder="Enter task description"></textarea>
-        </div>
-  
-        <div class="mb-3">
-          <label for="status" class="form-label">Status</label>
-          <select formControlName="status" id="status" class="form-select">
-            <option value="TO_DO">To Do</option>
-            <option value="IN_PROGRESS">In Progress</option>
-            <option value="DONE">Done</option>
-          </select>
-        </div>
-  
-        <div class="d-flex justify-content-between">
-          <a routerLink="/dashboard" class="btn btn-outline-secondary">Cancel</a>
-          <button type="submit" class="btn btn-primary px-4">
-            Update Task
-          </button>
-        </div>
-      </form>
     </div>
   </div>
   

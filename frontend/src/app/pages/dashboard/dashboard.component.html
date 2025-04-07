@@ -1,44 +1,55 @@
-<div class="container mt-4">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="fw-bold text-success mb-0">Task Dashboard</h2>
-        
-        <div class="d-flex align-items-center gap-5">
-            <a routerLink="/taskForm" class="btn btn-success me-2">Add Task</a>
-            <button (click)="onLogout()" class="btn btn-outline-danger">Logout</button>
-        </div>
-        
-      </div>
-      
-  
-    <div class="alert alert-info">
-      No tasks found. Start by adding one!
-    </div>
-  
-    <div class="table-responsive">
-      <table class="table table-striped table-hover">
-        <thead class="table-success">
-          <tr>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Description</th>
-            <th>Created At</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let task of tasks">
-            <td>"{{ task.title }}"</td>
-            <td>"{{ task.status }}"</td>
-            <td>"{{ task.description }}"</td>
-            <td>"{{ task.createdAt | date: 'medium' }}"</td>
-            
-            <td>
-              <a  class="btn btn-sm btn-outline-primary me-2">Edit</a>
-              <button  class="btn btn-sm btn-outline-danger" (click)="deleteTask(task.id)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold text-success">Task Dashboard</h2>
+    <div class="d-flex gap-3">
+      <a routerLink="/taskForm" class="btn btn-success d-flex align-items-center gap-1 px-3">
+        <i class="bi bi-plus-circle-fill"></i> Add Task
+      </a>
+      <button (click)="onLogout()" class="btn btn-outline-danger d-flex align-items-center gap-1 px-3">
+        <i class="bi bi-box-arrow-right"></i> Logout
+      </button>
     </div>
   </div>
-  
+
+  <div *ngIf="tasks.length === 0" class="alert alert-info text-center shadow-sm">
+    No tasks found. Start by adding one!
+  </div>
+
+  <div class="table-responsive shadow-sm rounded-3 overflow-hidden">
+    <table class="table align-middle table-hover mb-0">
+      <thead class="bg-success text-white">
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Status</th>
+          <th scope="col">Description</th>
+          <th scope="col">Created At</th>
+          <th scope="col" class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td>{{ task.title }}</td>
+          <td>
+            <span [ngClass]="{
+              'badge bg-primary': task.status === 'TO_DO',
+              'badge bg-warning text-dark': task.status === 'IN_PROGRESS',
+              'badge bg-success': task.status === 'DONE'
+            }">
+              {{ task.status.replace('_', ' ') }}
+            </span>
+          </td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.createdAt | date: 'medium' }}</td>
+          <td class="text-end">
+            <a routerLink="/taskEdit/{{ task.id }}" class="btn btn-sm btn-outline-primary me-2">
+              <i class="bi bi-pencil-square"></i>
+            </a>
+            <button (click)="deleteTask(task.id)" class="btn btn-sm btn-outline-danger">
+              <i class="bi bi-trash3"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
